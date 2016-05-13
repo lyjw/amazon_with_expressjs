@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  h1 Create a Product
+  form(action='/products' method='post')
+    .form-group(class=errors.name ? 'has-error' : '')
+      label(for='name') Name
+      input#name.form-control(type='text' name='name')
+      if errors.name
+        .help-block= errors.name
+    .form-group
+      label(for='description') Description
+      textarea#description.form-control(name='description')
+    .form-group(class=errors.price ? 'has-error' : '')
+      label(for='price') Price
+      .input-group
+        .input-group-addon $
+        input#price.form-control(type='text' name='price')
+        .input-group-addon .00
+        if errors.price
+          .help-block= errors.price
+    .form-group
+      input(type='submit' value='Create Product' class='btn btn-primary')

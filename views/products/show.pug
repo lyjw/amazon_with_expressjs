@@ -1,0 +1,22 @@
+extend ../layout
+
+block content
+  h1= product.name
+
+  h4 Description:
+  p= product.description
+
+  h4 Price:
+  p=product.price
+
+
+  //- a(href=`${product.id}/edit`)
+  //-   h3 Edit
+
+  form(action='/products/' + product._id + '/edit' method='get')
+    .form-group
+      input(type='submit' value='Edit Product' class='btn btn-primary')
+
+  form(action='/products/' + product._id + '?_method=delete' method='post')
+    .form-group
+      input(type='submit' value='Delete Product' class='btn btn-primary')

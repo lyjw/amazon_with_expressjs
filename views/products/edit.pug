@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  h1 Edit Product
+  form(action=`/products/${product.id}?_method=patch` method='post')
+    .form-group(class=errors.name ? 'has-error' : '')
+      label(for='name') Name
+      input#name.form-control(type='text' name='name' value=`${product.name}`)
+      if errors.name
+        .help-block= errors.name
+    .form-group
+      label(for='description') Description
+      textarea#description.form-control(name='description')
+        = `${product.description}`
+    .form-group(class=errors.price ? 'has-error' : '')
+      label(for='price') Price
+      .input-group
+        .input-group-addon $
+        input#price.form-control(type='text' name='price' value=`${product.price}`)
+        .input-group-addon .00
+        if errors.price
+          .help-block= errors.price
+    .form-group
+      input(type='submit' value='Edit Product' class='btn btn-primary')
